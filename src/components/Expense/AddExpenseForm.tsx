@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
-  const { expenses, setExpenses } = useContext(AppContext);
+  const { expenses, setExpenses, budget, setBudget } = useContext(AppContext);
   // Exercise: Create name and cost to state variables
   const [name, setName] = useState("");
   const [cost, setCost] = useState("");
