@@ -12,7 +12,7 @@ describe("Create an Expense", () => {
     const cost = screen.getByText("Cost");
     const save = screen.getByText("Save");
     expect(createExpenseSection).toBeInTheDocument();
-    expect(name).not.toBeInTheDocument();
+    expect(name).toBeInTheDocument();
     expect(save).toBeInTheDocument();
     expect(cost).toBeInTheDocument();
   });
