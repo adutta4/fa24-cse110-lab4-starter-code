@@ -30,6 +30,7 @@ const AddExpenseForm = () => {
             type="text"
             className="form-control"
             id="name"
+            placeholder="Enter item name"
             value={name}
             onChange={(event) => setName(event.target.value)}
           ></input>
@@ -41,6 +42,7 @@ const AddExpenseForm = () => {
             type="text"
             className="form-control"
             id="cost"
+            placeholder='Enter item cost'
             value={cost}
             onChange={(event) => setCost(event.target.value)}
           ></input>
