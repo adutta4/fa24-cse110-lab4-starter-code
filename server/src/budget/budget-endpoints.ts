@@ -11,7 +11,7 @@ export function createBudgetEndpoints(app: any, budget: { amount: number }) {
 
     // Update the budget
     app.put("/budget", (req: Request, res: Response) => {
-
+        console.log("req", req)
         updateBudget(res, req.body, budget);
 
     });

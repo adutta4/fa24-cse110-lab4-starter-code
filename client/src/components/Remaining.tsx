@@ -10,11 +10,11 @@ const Remaining = () => {
 
   const alertType = totalExpenses > budget ? "alert-danger" : "alert-success"
 
-  useEffect(() => {
-    if (alertType == 'alert-danger'){
-    alert("You have exceeded your budget!");
-  }
-  }, [alertType]);
+  // useEffect(() => {
+  //   if (alertType == 'alert-danger'){
+  //   alert("You have exceeded your budget!");
+  // }
+  // }, [alertType]);
 
   // Exercise: Create an alert when Remaining is less than 0.
 

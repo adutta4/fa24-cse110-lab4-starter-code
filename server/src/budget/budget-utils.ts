@@ -7,5 +7,8 @@ export function getBudget(res: Response, budget: number) {
 
 // Function to update the budget
 export function updateBudget(res: Response, body: any, budget: { amount: number }) {
-    // TO DO: Implement updateBudget function
+    console.log("body in update: " + body.budget)
+    const updatedBudget = parseInt(body.budget) 
+    budget.amount = updatedBudget;
+    res.status(200).send({"data": budget});
 }
