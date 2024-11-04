@@ -1,3 +1,4 @@
+import exp from "constants";
 import { Expense } from "../types";
 import { Request, Response } from "express";
 
@@ -20,6 +21,13 @@ export function createExpenseServer(req: Request, res: Response, expenses: Expen
 
 export function deleteExpense(req: Request, res: Response, expenses: Expense[]) {
     // TO DO: Implement deleteExpense function
+    const currLen = expenses.length;
+    const {id}  = req.params;
+
+    const expenseInd = expenses.findIndex((expense) => expense.id === id);
+    expenses.splice(expenseInd, 1);
+
+    res.status(201).send(id);
 }
 
 export function getExpenses(req: Request, res: Response, expenses: Expense[]) {
