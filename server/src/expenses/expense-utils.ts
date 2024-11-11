@@ -28,7 +28,7 @@ export async function deleteExpense(req: Request, res: Response, db: Database) {
         const expense = await db.get('SELECT * FROM expenses WHERE id = ?', [id]);
 
         if (!expense) {
-            return res.status(404).send({ error: `Expense with id ${id} not found` });
+            return res.status(404).send({ error: `Expense ${id} not found` });
         }
         await db.run('DELETE FROM expenses WHERE id = ?', [id]);
     }
@@ -44,7 +44,8 @@ export async function getExpensesServer(req: Request, res: Response, db: Databas
       const expenses = await db.all("SELECT * FROM expenses");
 
       res.status(200).json({ data: expenses});
-    } catch (error) {
+    } 
+    catch (error) {
       res.status(400).json({ error: `Error getting expenses: ${error}` });
     }
   }
