@@ -23,31 +23,28 @@ export async function createExpenseServer(req: Request, res: Response, db: Datab
  } 
 
 export async function deleteExpense(req: Request, res: Response, db: Database) {
-    // const currLen = expenses.length;
     const {id}  = req.params;
+    try {
+        const expense = await db.get('SELECT * FROM expenses WHERE id = ?', [id]);
 
-    // const expenseInd = expenses.findIndex((expense) => expense.id === id);
-    // expenses.splice(expenseInd, 1);
+        if (!expense) {
+            return res.status(404).send({ error: `Expense with id ${id} not found` });
+        }
+        await db.run('DELETE FROM expenses WHERE id = ?', [id]);
+    }
+    catch (error){
+        return res.status(400).send({ error: `Expense could not be deleted, + ${error}` });
+    }
 
     res.status(201).send(id);
 }
 
 export async function getExpensesServer(req: Request, res: Response, db: Database) {
     try {
+      const expenses = await db.all("SELECT * FROM expenses");
 
-        let query = 'SELECT * FROM expenses'; // Basic SQL query to get all expenses
-        let queryParams: any[] = [];
-
-        const rows = await db.all(query, queryParams);
-
-        if (rows.length === 0) {
-            return res.status(404).send({ message: 'No expenses found' });
-        }
-
-        res.status(200).send(rows);
-
+      res.status(200).json({ data: expenses});
     } catch (error) {
-        // Return an error if something goes wrong
-        return res.status(500).send({ error: `Error fetching expenses: ${error}` });
+      res.status(400).json({ error: `Error getting expenses: ${error}` });
     }
-}
+  }
